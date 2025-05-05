@@ -1,4 +1,4 @@
-name: Bare Tests
+name: Refresh Relay Targets
 
 on:
   workflow_dispatch:
@@ -9,20 +9,13 @@ on:
   release:
     types: [created]
 
-env: 
-  conda_env: REvoDesign
-  GITHUB_CONTAINER_ROSETTA_TEST: "YES" # Github Actions: run python against container node
-
 jobs:
-  BareTests:
+  Refresh:
     strategy:
       fail-fast: false
-      matrix:
-        
 
     runs-on: ubuntu-latest
     timeout-minutes: 5
-
 
     defaults:
       run:
@@ -40,8 +33,3 @@ jobs:
       - name: upload clash yaml to gist
         run: | 
           gh gist edit ${{ secrets.GIST_ID }} --file clash.yaml clash.yaml
-
-
-      - name: Clean up
-        run: |
-          make clean
