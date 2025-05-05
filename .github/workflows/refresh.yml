@@ -32,6 +32,6 @@ jobs:
 
       - name: upload clash yaml to gist
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GIST_PAT }}
         run: | 
           gh gist edit ${{ secrets.GIST_ID }} -f clash.yaml clash.yaml
