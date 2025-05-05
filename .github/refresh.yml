@@ -1,0 +1,47 @@
+name: Bare Tests
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  release:
+    types: [created]
+
+env: 
+  conda_env: REvoDesign
+  GITHUB_CONTAINER_ROSETTA_TEST: "YES" # Github Actions: run python against container node
+
+jobs:
+  BareTests:
+    strategy:
+      fail-fast: false
+      matrix:
+        
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+
+    defaults:
+      run:
+        shell: bash -el {0}
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: fetch clash yaml
+        run: |
+          wget "${{ secrets.RELAY_TARGETS_URL }}" --user-agent "${{  secrets.USER_AGENT }}" -O clash.yaml
+
+      - name: upload clash yaml to gist
+        run: | 
+          gh gist edit ${{ secrets.GIST_ID }} --file clash.yaml clash.yaml
+
+
+      - name: Clean up
+        run: |
+          make clean
