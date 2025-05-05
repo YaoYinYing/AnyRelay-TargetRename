@@ -32,4 +32,4 @@ jobs:
 
       - name: upload clash yaml to gist
         run: | 
-          gh gist edit ${{ secrets.GIST_ID }} --file clash.yaml clash.yaml
+          gh gist edit ${{ secrets.GIST_ID }} -f clash.yaml clash.yaml
