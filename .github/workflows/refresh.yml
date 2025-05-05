@@ -9,6 +9,8 @@ on:
   release:
     types: [created]
 
+env:
+    GH_TOKEN: ${{ github.token }}
 jobs:
   Refresh:
     strategy:
