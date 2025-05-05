@@ -9,8 +9,6 @@ on:
   release:
     types: [created]
 
-env:
-    GH_TOKEN: ${{ github.token }}
 jobs:
   Refresh:
     strategy:
@@ -33,5 +31,7 @@ jobs:
           wget "${{ secrets.RELAY_TARGETS_URL }}" --user-agent "${{  secrets.USER_AGENT }}" -O clash.yaml
 
       - name: upload clash yaml to gist
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: | 
           gh gist edit ${{ secrets.GIST_ID }} -f clash.yaml clash.yaml
