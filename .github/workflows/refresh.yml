@@ -35,7 +35,8 @@ jobs:
           
       - name: fetch clash yaml
         run: |
-          wget "$(echo ${{ secrets.RELAY_TARGETS_URL }} |  sed -r 's/http[s]?:\/+[a-z-]+\.[a-z-]+\.[a-z-]+/http:\/\/localhost:25500/')" --user-agent "${{  secrets.USER_AGENT }}" -O clash.yaml -q
+          RELAY_TARGETS_URL_LOCAL=$(echo ${{ secrets.RELAY_TARGETS_URL }} |  sed -r 's/http[s]?:\/+[a-z-]+\.[a-z-]+\.[a-z-]+/http:\/\/localhost:25500/')
+          wget "$(RELAY_TARGETS_URL_LOCAL)" --user-agent "${{  secrets.USER_AGENT }}" -O clash.yaml -q
 
       - name: upload clash yaml to gist
         env:
