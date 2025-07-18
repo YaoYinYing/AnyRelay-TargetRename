@@ -36,7 +36,7 @@ jobs:
       - name: fetch clash yaml
         run: |
           RELAY_TARGETS_URL_LOCAL=$(echo "${{ secrets.RELAY_TARGETS_URL }}" |  sed -r 's/http[s]?:\/+[a-z-]+\.[a-z-]+\.[a-z-]+/http:\/\/localhost:25500/')
-          wget "$RELAY_TARGETS_URL_LOCAL" --user-agent "${{  secrets.USER_AGENT }}" -O clash.yaml -q
+          wget "$RELAY_TARGETS_URL_LOCAL" --user-agent "mihomo.party/v1.7.3 (clash.meta)" -O clash.yaml
 
       - name: upload clash yaml to gist
         env:
